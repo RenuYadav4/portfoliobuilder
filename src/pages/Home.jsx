@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Sidebar from '../components/Sidebar';
 import MainContent from '../components/MainContent';
+import { Outlet } from 'react-router-dom';
 
 const Home = () => {
   const [selectedOption, setSelectedOption] = useState('');
@@ -16,6 +17,7 @@ const Home = () => {
       <div className="flex-1 overflow-auto">
         <MainContent selected={selectedOption} />
       </div>
+       
     </div>
   );
 };

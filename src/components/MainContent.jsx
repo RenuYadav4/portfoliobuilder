@@ -5,15 +5,17 @@ import Features from './Features';
 const MainContent = ({ selected }) => {
   return (
     <div className="relative min-h-screen w-full overflow-hidden">
-      {/* Background Image */}
-      <img
-        src={resumeImage}
-        alt="Background"
-        className="absolute inset-0 w-full h-full object-cover opacity-30"
-      />
-
-      {/* Optional dark overlay for better text visibility */}
-      <div className="absolute inset-0 bg-black/10" />
+      
+      {/* Background Image and Overlay in a z-0 wrapper */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src={resumeImage}
+          alt="Background"
+          className="w-full h-full object-cover"
+          style={{ opacity: 0.3 }}
+        />
+        <div className="absolute inset-0 bg-black/10" />
+      </div>
 
       {/* Overlay Content */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center p-10 md:p-20 h-full">
@@ -27,7 +29,11 @@ const MainContent = ({ selected }) => {
           {selected === 'Analyze Your Resume' && 'Get insights and improvements for your current resume.'}
         </p>
       </div>
-      <Features/>
+
+      {/* Features Section should also be above background */}
+      <div className="relative z-10">
+        <Features />
+      </div>
     </div>
   );
 };

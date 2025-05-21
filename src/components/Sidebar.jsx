@@ -20,10 +20,8 @@ const Sidebar = ({ selected, onSelect }) => {
         dynamicOptions.push({ label: 'Get Link', icon: <FiLink /> });
     }
 
-    const toggleSidebar = () => setIsOpen(!isOpen);
-
     return (
-        <div className={`min-h-screen flex ${isOpen ? 'w-full' : 'w-0'} transition-all duration-300`}>
+        <div className={`hidden md:flex min-h-screen  ${isOpen ? 'w-full' : 'w-0'} transition-all duration-300`}>
             {/* Sidebar content */}
             <div className={`bg-white  shadow-xl border-r min-h-screen flex flex-col justify-between sticky top-0 ${isOpen ? 'block' : 'hidden md:block'}`}>
                 <div className="p-6">
@@ -35,7 +33,7 @@ const Sidebar = ({ selected, onSelect }) => {
                                 onClick={() => onSelect(option.label)}
                                 className={`flex items-center gap-3 w-full px-4 py-3 rounded-lg text-left font-medium transition-all ${selected === option.label
                                         ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg'
-                                        : 'text-gray-700 hover:bg-gray-100'
+                                       : 'text-gray-700 hover:bg-gray-100'
                                     }`}
                             >
                                 {option.icon}
@@ -68,14 +66,6 @@ const Sidebar = ({ selected, onSelect }) => {
                     © 2025 Focushboard Inc.
                 </div>
             </div>
-
-            {/* Hamburger Icon (for mobile) */}
-            <button
-                className="md:hidden absolute top-5 left-5 z-50 text-2xl text-gray-800"
-                onClick={toggleSidebar}
-            >
-                <FiMenu />
-            </button>
         </div>
     );
 };
