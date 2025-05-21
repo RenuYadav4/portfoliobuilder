@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./Pages/Home";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+import Home from './pages/Home';
 import Navbar from "./components/Navbar";
 import ResumeForm from "./components/ResumeForm";
 import PortfolioForm from "./components/PortfolioForm";
