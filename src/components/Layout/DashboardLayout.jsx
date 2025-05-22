@@ -5,6 +5,7 @@ import MainContent from "../MainContent";
 
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import Navbar from "./Navbar";
+import ResumeTemplate from "../ResumeTemplate";
 
 const DashboardLayout = () => {
   const location = useLocation();
@@ -19,19 +20,20 @@ const DashboardLayout = () => {
     <div className="flex flex-col h-screen min-h-0">
       <Navbar />
       <div className="flex flex-1 min-h-0">
-        <Sidebar selected={selected} onSelect={() => {}} />
+        <Sidebar selected={selected} onSelect={() => { }} />
 
         <main className="flex-1 overflow-y-auto min-h-0">
           <Routes>
             {/* Show MainContent when path is exactly /dashboard */}
             <Route path="/" element={<MainContent selected="" />} />
-
             <Route path="build-resume" element={<ResumeForm />} />
             <Route path="build-portfolio" element={<PortfolioForm />} />
             <Route path="analyze-resume" element={<div>Analyze Resume Component Here</div>} />
-            
+
             {/* Redirect unknown paths back to /dashboard (main content) */}
+
             <Route path="*" element={<Navigate to="/" replace />} />
+
           </Routes>
         </main>
       </div>

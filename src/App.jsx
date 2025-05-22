@@ -1,8 +1,9 @@
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
-import { BrowserRouter as Router, Route, Routes,Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import { isAuthenticated } from "./auth";
 import DashboardLayout from "./components/Layout/DashboardLayout";
+import ResumeTemplate from "./components/ResumeTemplate";
 
 
 
@@ -23,26 +24,28 @@ function App() {
     //   </Routes>
     // </BrowserRouter>
     <Router>
-    <Routes>
-      {/* Default route renders Signup */}
-      <Route path="/" element={<Signup />} />
-      <Route path="/login" element={<Login />} />
+      <Routes>
+        {/* Default route renders Signup */}
+        <Route path="/" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/template" element={<ResumeTemplate />} />
 
-      {/* Protected routes */}
-      <Route
-        path="/dashboard/*"
-        element={
-          loggedIn ? (
-            <DashboardLayout />
-          ) : (
-            <Navigate to="/login" replace />
-          )
-        }
-      />
-    </Routes>
-  </Router>
+
+        {/* Protected routes */}
+        <Route
+          path="/dashboard/*"
+          element={
+            loggedIn ? (
+              <DashboardLayout />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+      </Routes>
+    </Router>
   );
- 
+
 }
 
 export default App;
