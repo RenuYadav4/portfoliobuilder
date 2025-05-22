@@ -8,8 +8,7 @@ const Navbar = () => {
     const navigate = useNavigate();
 
     const logout = () => {
-        localStorage.removeItem("user");
-        navigate("/");
+        navigate("/login");
     };
 
     const linkClasses = "relative text-gray-300 hover:text-white transition duration-300 group";
@@ -99,8 +98,7 @@ const Navbar = () => {
                     <div
                         className="absolute inset-0 bg-black bg-opacity-40"
                         onClick={() => setShowMobileSidebar(false)}
-                    />
-                    
+                    />  
                 </div>
             )}
         </>
