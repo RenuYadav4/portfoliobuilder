@@ -10,6 +10,9 @@ const Navbar = () => {
     const logout = () => {
         navigate("/login");
     };
+    const goToDashboard = () => {
+        navigate("/dashboard");
+    };
 
     const linkClasses = "relative text-gray-300 hover:text-white transition duration-300 group";
 
@@ -32,7 +35,15 @@ const Navbar = () => {
                             Logout
                             <span className="absolute left-0 -bottom-1 h-0.5 w-0 bg-gradient-to-r from-red-400 to-yellow-500 transition-all duration-300 group-hover:w-full"></span>
                         </p>
+                        <p
+                            onClick={goToDashboard}
+                            className={`${linkClasses} cursor-pointer`}
+                        >
+                            Go to Home
+                            <span className="absolute left-0 -bottom-1 h-0.5 w-0 bg-gradient-to-r from-red-400 to-yellow-500 transition-all duration-300 group-hover:w-full"></span>
+                        </p>
                     </div>
+                   
 
                     {/* Mobile Toggle */}
                     <button onClick={() => setOpen(!open)} className="md:hidden text-gray-300 z-50">

@@ -150,7 +150,7 @@ const ResumeBuilder = () => {
         ))}
       </div>
 
-      <button className="w-full mt-6 py-3 bg-gradient-to-r from-green-400 to-green-600 text-white text-lg font-semibold rounded shadow hover:from-green-500 hover:to-green-700" onClick={handleSubmit}>
+      <button className="w-full cursor-pointer mt-6 py-3 bg-gradient-to-r from-green-400 to-green-600 text-white text-lg font-semibold rounded shadow hover:from-green-500 hover:to-green-700" onClick={handleSubmit}>
         📄 Preview My Resume
       </button>
     </div>
