@@ -2,20 +2,20 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const navigate = useNavigate();
 
   const handleInput = (e) => {
     const value = e.target.value;
     const name = e.target.name;
-    if ("email" == name) {
+    if ("email" === name) {
       setEmail(value);
     }
-    if ("password" == name) {
+    if ("password" === name) {
       setPassword(value);
     }
   }
@@ -23,24 +23,22 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    let getDetails = JSON.parse(localStorage.getItem("user")) || [];
 
+    const userFound = getDetails.find(
+      (curUser) => curUser.email === email && curUser.password === password
+    );
 
-    // verfiy the data entered if exists already in the localstorage.
-    let getDetails = JSON.parse(localStorage.getItem("user"))
-
-    getDetails.map((curUser) => {
-      let storeEmail = curUser.email;
-      let storePassword = curUser.password;
-
-      // compare the input values enterd by user now with the values stored in the local storage
-      if (storeEmail == email && storePassword == password) {
-        alert("logged in Successfully !!")
-        navigate("/home");
-      } else {
-        return setMessage("Invalid Email or password")
-      }
-
-    })
+    if (userFound) {
+      setIsSuccess(true);
+      setMessage("Logged in successfully! Redirecting...");
+      setTimeout(() => {
+        navigate('/dashboard');
+      }, 2000);
+    } else {
+      setIsSuccess(false);
+      setMessage("Invalid Email or password");
+    }
   }
 
   return (
@@ -49,7 +47,7 @@ const Login = () => {
 
         {/* Left: Simple Light Login Card */}
         <div className="bg-white p-8 sm:p-10 rounded-3xl shadow-xl w-full max-w-md">
-          <p>{message}</p>
+          <p className={`mb-4 font-semibold ${isSuccess ? "text-green-600" : "text-red-600"}`}>{message}</p>
           <form onSubmit={handleSubmit}>
             <div className="mb-6">
               <p className="text-3xl font-bold text-center text-gray-800">Login</p>
@@ -89,7 +87,7 @@ const Login = () => {
               {/* Signup Link */}
               <p className="text-sm text-gray-600 text-center">
                 Don't have an account?{' '}
-                <Link to="/signup" className="text-gray-900 font-semibold hover:underline">
+                <Link to="/" className="text-gray-900 font-semibold hover:underline">
                   Create one
                 </Link>
               </p>

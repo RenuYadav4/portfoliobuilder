@@ -32,10 +32,11 @@ const navigate = useNavigate();
       arr = [...getData];
       arr.push(data);
 
-      // set or store data into localstorage
+      // // set or store data into localstorage
       localStorage.setItem("user", JSON.stringify(arr));
       alert("Signed up successfully !!");
-      navigate("/login");
+      localStorage.setItem("authToken", "dummyToken");
+            navigate("/login");
     }
 
   }
