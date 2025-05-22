@@ -25,19 +25,7 @@ const Navbar = () => {
 
                     {/* Desktop Menu */}
                     <div className="hidden md:flex space-x-6 items-center">
-                        <Link to="/" className={linkClasses}>
-                            Signup
-                            <span className="absolute left-0 -bottom-1 h-0.5 w-0 bg-gradient-to-r from-pink-500 to-purple-500 transition-all duration-300 group-hover:w-full"></span>
-                        </Link>
-                        {/* <Link to="/home" className={linkClasses}>
-                            Home
-                            <span className="absolute left-0 -bottom-1 h-0.5 w-0 bg-gradient-to-r from-green-400 to-blue-500 transition-all duration-300 group-hover:w-full"></span>
-                        </Link> */}
-                        <Link to="/login" className={linkClasses}>
-                            Login
-                            <span className="absolute left-0 -bottom-1 h-0.5 w-0 bg-gradient-to-r from-yellow-400 to-pink-500 transition-all duration-300 group-hover:w-full"></span>
-                        </Link>
-                        <p
+                                               <p
                             onClick={logout}
                             className={`${linkClasses} cursor-pointer`}
                         >
