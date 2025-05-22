@@ -46,6 +46,45 @@ const ResumeBuilder = () => {
   };
 
   const handleSubmit = () => {
+    const { name, email, phone, headline, summary, education, experience, projects, skills } = formData;
+
+    if (
+      !name.trim() ||
+      !email.trim() ||
+      !phone.trim() ||
+      !headline.trim() ||
+      !summary.trim()
+    ) {
+      alert("Please fill out all basic details.");
+      return;
+    }
+
+    for (let edu of education) {
+      if (!edu.school.trim() || !edu.degree.trim() || !edu.year.trim()) {
+        alert("Please complete all education fields.");
+        return;
+      }
+    }
+
+    for (let exp of experience) {
+      if (!exp.company.trim() || !exp.role.trim() || !exp.duration.trim()) {
+        alert("Please complete all experience fields.");
+        return;
+      }
+    }
+
+    for (let proj of projects) {
+      if (!proj.title.trim() || !proj.description.trim() || !proj.link.trim()) {
+        alert("Please complete all project fields.");
+        return;
+      }
+    }
+
+    if (skills.length === 0) {
+      alert("Please add at least one skill.");
+      return;
+    }
+
     navigate("/template", { state: formData });
   };
 
@@ -54,20 +93,20 @@ const ResumeBuilder = () => {
       <h2 className="text-4xl font-extrabold text-blue-700 mb-8 text-center">📝 Create Your Resume</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Input label="👤 Full Name" name="name" value={formData.name} onChange={handleChange} />
-        <Input label="📧 Email" name="email" value={formData.email} onChange={handleChange} />
-        <Input label="📞 Phone Number" name="phone" value={formData.phone} onChange={handleChange} />
-        <Input label="💼 Headline" name="headline" value={formData.headline} onChange={handleChange} />
+        <Input label="👤 Full Name" name="name" value={formData.name} onChange={handleChange} required />
+        <Input label="📧 Email" name="email" value={formData.email} onChange={handleChange} required />
+        <Input label="📞 Phone Number" name="phone" value={formData.phone} onChange={handleChange} required />
+        <Input label="💼 Headline" name="headline" value={formData.headline} onChange={handleChange} required />
       </div>
 
-      <Textarea label="🧾 Professional Summary" name="summary" value={formData.summary} onChange={handleChange} />
+      <Textarea label="🧾 Professional Summary" name="summary" value={formData.summary} onChange={handleChange} required />
 
       <SectionTitle title="🎓 Education" />
       {formData.education.map((edu, i) => (
         <div key={i} className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-          <Input label="🏫 School" name="school" value={edu.school} onChange={(e) => handleChange(e, i, "education")} />
-          <Input label="📘 Degree" name="degree" value={edu.degree} onChange={(e) => handleChange(e, i, "education")} />
-          <Input label="📅 Year" name="year" value={edu.year} onChange={(e) => handleChange(e, i, "education")} />
+          <Input label="🏫 School" name="school" value={edu.school} onChange={(e) => handleChange(e, i, "education")} required />
+          <Input label="📘 Degree" name="degree" value={edu.degree} onChange={(e) => handleChange(e, i, "education")} required />
+          <Input label="📅 Year" name="year" value={edu.year} onChange={(e) => handleChange(e, i, "education")} required />
         </div>
       ))}
       <AddButton label="Add Education" onClick={() => addField("education")} />
@@ -75,9 +114,9 @@ const ResumeBuilder = () => {
       <SectionTitle title="💼 Work Experience" />
       {formData.experience.map((exp, i) => (
         <div key={i} className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-          <Input label="🏢 Company" name="company" value={exp.company} onChange={(e) => handleChange(e, i, "experience")} />
-          <Input label="🧑‍💼 Role" name="role" value={exp.role} onChange={(e) => handleChange(e, i, "experience")} />
-          <Input label="🕒 Duration" name="duration" value={exp.duration} onChange={(e) => handleChange(e, i, "experience")} />
+          <Input label="🏢 Company" name="company" value={exp.company} onChange={(e) => handleChange(e, i, "experience")} required />
+          <Input label="🧑‍💼 Role" name="role" value={exp.role} onChange={(e) => handleChange(e, i, "experience")} required />
+          <Input label="🕒 Duration" name="duration" value={exp.duration} onChange={(e) => handleChange(e, i, "experience")} required />
         </div>
       ))}
       <AddButton label="Add Experience" onClick={() => addField("experience")} />
@@ -85,9 +124,9 @@ const ResumeBuilder = () => {
       <SectionTitle title="🚀 Projects" />
       {formData.projects.map((proj, i) => (
         <div key={i} className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-          <Input label="📌 Project Title" name="title" value={proj.title} onChange={(e) => handleChange(e, i, "projects")} />
-          <Input label="🔗 Link" name="link" value={proj.link} onChange={(e) => handleChange(e, i, "projects")} />
-          <Textarea label="📝 Description" name="description" value={proj.description} onChange={(e) => handleChange(e, i, "projects")} />
+          <Input label="📌 Project Title" name="title" value={proj.title} onChange={(e) => handleChange(e, i, "projects")} required />
+          <Input label="🔗 Link" name="link" value={proj.link} onChange={(e) => handleChange(e, i, "projects")} required />
+          <Textarea label="📝 Description" name="description" value={proj.description} onChange={(e) => handleChange(e, i, "projects")} required />
         </div>
       ))}
       <AddButton label="Add Project" onClick={() => addField("projects")} />
@@ -118,7 +157,7 @@ const ResumeBuilder = () => {
   );
 };
 
-const Input = ({ label, name, value, onChange }) => (
+const Input = ({ label, name, value, onChange, required }) => (
   <div>
     <label className="text-sm font-semibold text-gray-700">{label}</label>
     <input
@@ -126,12 +165,13 @@ const Input = ({ label, name, value, onChange }) => (
       name={name}
       value={value}
       onChange={onChange}
+      required={required}
       className="w-full mt-1 px-3 py-2 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
     />
   </div>
 );
 
-const Textarea = ({ label, name, value, onChange }) => (
+const Textarea = ({ label, name, value, onChange, required }) => (
   <div className="mb-4">
     <label className="text-sm font-semibold text-gray-700">{label}</label>
     <textarea
@@ -139,6 +179,7 @@ const Textarea = ({ label, name, value, onChange }) => (
       value={value}
       onChange={onChange}
       rows={3}
+      required={required}
       className="w-full mt-1 px-3 py-2 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
     ></textarea>
   </div>
