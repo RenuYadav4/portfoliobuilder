@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import {
   FiFileText,
   FiBriefcase,
@@ -25,28 +25,36 @@ const Sidebar = ({ selected, onSelect }) => {
     {
       label: "Analyze Your Resume",
       icon: <FiBarChart2 />,
-      path: "/dashboard/analyze-resume",
-    },
+      external: true,
+      path: "https://resume-analyzer-chi.vercel.app/"
+    }
+
   ];
 
+  const navigate = useNavigate();
+
+  const handleSubmit = () => {
+    navigate("/template");
+  };
+
+  const handleLink = ()=>{
+    navigate('/preview');
+  }
   const navLinkClass = ({ isActive }) =>
-    `flex items-center gap-3 w-full px-4 py-3 rounded-lg text-left font-medium transition-all ${
-      isActive
-        ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg"
-        : "text-gray-700 hover:bg-gray-100"
+    `flex items-center gap-3 w-full px-4 py-3 rounded-lg text-left font-medium transition-all ${isActive
+      ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg"
+      : "text-gray-700 hover:bg-gray-100"
     }`;
 
   return (
     <div
-      className={`hidden md:flex min-h-full ${
-        isOpen ? "w-64" : "w-0"
-      } transition-all duration-300`}
+      className={`hidden md:flex min-h-full ${isOpen ? "w-64" : "w-0"
+        } transition-all duration-300`}
     >
 
       <div
-        className={`bg-white shadow-xl border-r h-full flex flex-col justify-between sticky top-0 ${
-          isOpen ? "block" : "hidden md:block"
-        }`}
+        className={`bg-white shadow-xl border-r h-full flex flex-col justify-between sticky top-0 ${isOpen ? "block" : "hidden md:block"
+          }`}
       >
         <div className="p-6">
           <h2 className="text-2xl font-bold text-gray-800 mb-6">Dashboard</h2>
@@ -70,7 +78,8 @@ const Sidebar = ({ selected, onSelect }) => {
             <div className="mt-6 pt-4 border-t border-gray-300 space-y-3">
               {/* Export PDF Button */}
               <button
-                onClick={() => console.log("Export PDF clicked")}
+                // onClick={() => console.log("Export PDF clicked")}
+                onClick={handleSubmit}
                 className="group flex items-center justify-between w-full px-4 py-3 bg-[#5b5a5a] hover:bg-[#a87b98] text-white rounded-xl shadow-md transition-all duration-300 hover:shadow-lg active:scale-95"
               >
                 <span className="flex items-center gap-3 text-base font-medium">
@@ -91,7 +100,7 @@ const Sidebar = ({ selected, onSelect }) => {
               {/* Get Link Button - only if Build Portfolio */}
               {selected === "Build Portfolio" && (
                 <button
-                  onClick={() => console.log("Get Link clicked")}
+                  onClick={handleLink}
                   className="group flex items-center justify-between w-full px-4 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-xl shadow-md transition-all duration-300 hover:shadow-lg active:scale-95"
                 >
                   <span className="flex items-center gap-3 text-base font-medium">

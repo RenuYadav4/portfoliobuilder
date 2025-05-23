@@ -1,11 +1,12 @@
 import Sidebar from "./Sidebar";
-import ResumeForm from "../ResumeBuilder";
-import PortfolioForm from "../PortfolioForm";
+// import ResumeForm from "../ResumeBuilder";
 import MainContent from "../MainContent";
 
-import { Routes, Route, useLocation, Navigate } from "react-router-dom";
+import { Routes, Route, useLocation, Navigate, Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import ResumeTemplate from "../ResumeTemplate";
+import ResumeBuilder from "../ResumeBuilder";
+import PortfolioBuilder from "../PortfolioBuilder";
 
 const DashboardLayout = () => {
   const location = useLocation();
@@ -26,15 +27,16 @@ const DashboardLayout = () => {
           <Routes>
             {/* Show MainContent when path is exactly /dashboard */}
             <Route path="/" element={<MainContent selected="" />} />
-            <Route path="build-resume" element={<ResumeForm />} />
-            <Route path="build-portfolio" element={<PortfolioForm />} />
+            {/* <Route path="build-resume" element={<ResumeForm />} /> */}
+            <Route path="build-resume" element={<ResumeBuilder />} />
+            <Route path="build-portfolio" element={<PortfolioBuilder />} />
             <Route path="analyze-resume" element={<div>Analyze Resume Component Here</div>} />
 
             {/* Redirect unknown paths back to /dashboard (main content) */}
 
             <Route path="*" element={<Navigate to="/" replace />} />
-
           </Routes>
+          
         </main>
       </div>
     </div>

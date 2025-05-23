@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
     const [open, setOpen] = useState(false);
     const [showMobileSidebar, setShowMobileSidebar] = useState(false); // ✅ New state for sidebar toggle
     const navigate = useNavigate();
+    const location = useLocation();
+
 
     const logout = () => {
         navigate("/login");
@@ -28,22 +30,26 @@ const Navbar = () => {
 
                     {/* Desktop Menu */}
                     <div className="hidden md:flex space-x-6 items-center">
-                                               <p
+                        <p
                             onClick={logout}
                             className={`${linkClasses} cursor-pointer`}
                         >
                             Logout
                             <span className="absolute left-0 -bottom-1 h-0.5 w-0 bg-gradient-to-r from-red-400 to-yellow-500 transition-all duration-300 group-hover:w-full"></span>
                         </p>
-                        <p
-                            onClick={goToDashboard}
-                            className={`${linkClasses} cursor-pointer`}
-                        >
-                            Go to Home
-                            <span className="absolute left-0 -bottom-1 h-0.5 w-0 bg-gradient-to-r from-red-400 to-yellow-500 transition-all duration-300 group-hover:w-full"></span>
-                        </p>
+                        {location.pathname !== "/dashboard" && (
+                            <p
+                                onClick={goToDashboard}
+                                className={`${linkClasses} cursor-pointer`}
+                            >
+                                Home
+                                <span className="absolute left-0 -bottom-1 h-0.5 w-0 bg-gradient-to-r from-red-400 to-yellow-500 transition-all duration-300 group-hover:w-full"></span>
+                            </p>
+                        )}
+
+
                     </div>
-                   
+
 
                     {/* Mobile Toggle */}
                     <button onClick={() => setOpen(!open)} className="md:hidden text-gray-300 z-50">
@@ -97,7 +103,7 @@ const Navbar = () => {
                     <div
                         className="absolute inset-0 bg-black bg-opacity-40"
                         onClick={() => setShowMobileSidebar(false)}
-                    />  
+                    />
                 </div>
             )}
         </>

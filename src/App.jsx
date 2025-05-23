@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-d
 import { isAuthenticated } from "./auth";
 import DashboardLayout from "./components/Layout/DashboardLayout";
 import ResumeTemplate from "./components/ResumeTemplate";
+import PortfolioPreview from "./components/PortfolioPreview";
 
 
 
@@ -29,6 +30,7 @@ function App() {
         <Route path="/" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/template" element={<ResumeTemplate />} />
+        <Route path="/preview" element={<PortfolioPreview/>}/>
 
 
         {/* Protected routes */}
