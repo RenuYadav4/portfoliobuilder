@@ -30,8 +30,11 @@ const Login = () => {
     );
 
     if (userFound) {
+      localStorage.setItem("authToken", "dummyToken");
+    
       setIsSuccess(true);
       setMessage("Logged in successfully! Redirecting...");
+    
       setTimeout(() => {
         navigate('/dashboard');
       }, 2000);
@@ -39,6 +42,7 @@ const Login = () => {
       setIsSuccess(false);
       setMessage("Invalid Email or password");
     }
+    
   }
 
   return (
