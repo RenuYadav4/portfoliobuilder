@@ -11,7 +11,7 @@ const ResumeTemplate = () => {
     const element = printableRef.current;
     if (!element) return;
 
-    try {
+    try {    
       const canvas = await html2canvas(element, {
         scale: 2,
         backgroundColor: "#ffffff",
