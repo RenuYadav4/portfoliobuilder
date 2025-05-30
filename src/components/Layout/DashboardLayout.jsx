@@ -4,7 +4,6 @@ import MainContent from "../MainContent";
 
 import { Routes, Route, useLocation, Navigate, Link } from "react-router-dom";
 import Navbar from "./Navbar";
-import ResumeTemplate from "../ResumeTemplate";
 import ResumeBuilder from "../ResumeBuilder";
 import PortfolioBuilder from "../PortfolioBuilder";
 

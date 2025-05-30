@@ -45,7 +45,7 @@ const ResumeBuilder = () => {
     }
   };
 
-  const handleSubmit = () => {
+   const handleSubmit = () => {
     const { name, email, phone, headline, summary, education, experience, projects, skills } = formData;
 
     if (
