@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
-const Navbar = () => {
+const Navbar = ({ onToggleSidebar, onOpenSidebar }) => {
     const [open, setOpen] = useState(false);
-    const [showMobileSidebar, setShowMobileSidebar] = useState(false); // ✅ New state for sidebar toggle
+    // const [showMobileSidebar, setShowMobileSidebar] = useState(false); // ✅ New state for sidebar toggle
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -61,7 +61,7 @@ const Navbar = () => {
                 {open && (
                     <div className="fixed top-0 left-0 w-full h-full bg-[#8a8b9b] opacity-90 z-40 pt-20 flex flex-col items-center space-y-6 md:hidden">
                         <Link
-                            to="/home"
+                            to="/dashboard"
                             onClick={() => setOpen(false)}
                             className="text-white text-xl hover:text-gray-300 transition"
                         >
@@ -86,26 +86,18 @@ const Navbar = () => {
                         <p
                             onClick={() => {
                                 setOpen(false);
-                                setShowMobileSidebar(true);
+                                if (onOpenSidebar) onOpenSidebar(); // Call the sidebar open function
                             }}
                             className="text-white text-xl hover:text-gray-300 transition cursor-pointer"
                         >
-                            Dashboard
+                            Open Sidebar
                         </p>
+
                     </div>
                 )}
             </nav>
 
-            {/* ✅ Mobile Sidebar Toggle */}
-            {showMobileSidebar && (
-                <div className="fixed inset-0 z-50 flex">
-                    {/* Background overlay */}
-                    <div
-                        className="absolute inset-0 bg-black bg-opacity-40"
-                        onClick={() => setShowMobileSidebar(false)}
-                    />
-                </div>
-            )}
+
         </>
     );
 };

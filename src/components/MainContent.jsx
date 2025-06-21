@@ -24,9 +24,9 @@ const MainContent = ({ selected }) => {
         </h1>
         <p className="text-gray-800 text-lg md:text-xl font-medium max-w-2xl">
           {selected === '' && 'Choose an option from the sidebar to get started.'}
-          {selected === 'Build Resume' && 'Craft a professional resume using our intuitive builder.'}
+          {/* {selected === 'Build Resume' && 'Craft a professional resume using our intuitive builder.'}
           {selected === 'Build Portfolio' && 'Showcase your work and achievements with a beautiful portfolio.'}
-          {selected === 'Analyze Your Resume' && 'Get insights and improvements for your current resume.'}
+          {selected === 'Analyze Your Resume' && 'Get insights and improvements for your current resume.'} */}
         </p>
       </div>
 
@@ -34,6 +34,8 @@ const MainContent = ({ selected }) => {
       <div className="relative z-10">
         <Features />
       </div>
+      {/* options */}
+     
     </div>
   );
 };

@@ -8,8 +8,7 @@ import {
   FiLink,
 } from "react-icons/fi";
 
-const Sidebar = ({ selected, onSelect }) => {
-  const [isOpen, setIsOpen] = useState(true);
+const Sidebar = ({ selected, onSelect, className="" }) => {
 
   const baseOptions = [
     {
@@ -47,15 +46,11 @@ const Sidebar = ({ selected, onSelect }) => {
     }`;
 
   return (
-    <div
-      className={`hidden md:flex min-h-full ${isOpen ? "w-64" : "w-0"
-        } transition-all duration-300`}
-    >
+    <div className={`h-full w-64 ${className}`}>
 
-      <div
-        className={`bg-white shadow-xl border-r h-full flex flex-col justify-between sticky top-0 ${isOpen ? "block" : "hidden md:block"
-          }`}
-      >
+
+<div className="bg-white shadow-xl border-r h-full flex flex-col justify-between sticky top-0">
+
         <div className="p-6">
           <h2 className="text-2xl font-bold text-gray-800 mb-6">Dashboard</h2>
 
