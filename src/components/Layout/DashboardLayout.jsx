@@ -27,18 +27,14 @@ const DashboardLayout = () => {
         onOpenSidebar={() => setSidebarOpen(true)}
       />
       <div className="flex flex-1 min-h-0">
-        {/* {sidebarOpen && (
-          <div
-            className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
-            onClick={() => setSidebarOpen(false)}
-          />
-        )} */}
+        
         {sidebarOpen && (
           <div
             className="fixed inset-0  bg-opacity-40 z-40 md:hidden"
             onClick={() => setSidebarOpen(false)}
           />
         )}
+        
 
 
         <Sidebar selected={selected} onSelect={() => setSidebarOpen(false)}
