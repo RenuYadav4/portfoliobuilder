@@ -52,7 +52,7 @@ const PortfolioPreview = () => {
           className="md:w-1/2 flex justify-center mt-10 md:mt-0"
         >
           <img src="https://img.freepik.com/free-vector/hand-drawn-flat-design-devops-illustration_23-2149375793.jpg?ga=GA1.1.140562508.1741446864&semt=ais_hybrid&w=740" alt="Profile"
-            className="rounded-full shadow-2xl w-96 h-96 object-cover border-4 border-white" />
+            className="rounded-full shadow-2xl h-50 w-50 md:w-96 md:h-96 object-cover border-4 border-white" />
         </motion.div>
       </section>
 

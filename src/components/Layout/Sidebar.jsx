@@ -46,7 +46,7 @@ const Sidebar = ({ selected, onSelect, className="" }) => {
     }`;
 
   return (
-    <div className={`h-full w-64 ${className}`}>
+    <div className={`h-full  w-64 ${className}`}>
 
 
 <div className="bg-white shadow-xl border-r h-full flex flex-col justify-between sticky top-0">
